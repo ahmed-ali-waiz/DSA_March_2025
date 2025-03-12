@@ -50,22 +50,36 @@ void insert_At_head(Node* &head, int val){
         delete temp;
     }
 
-    void delete_From_Pos(int pos,Node* &head){
-        Node* temp = head;
-        for (int i = 1; i < pos - 1 && temp != NULL; i++) {
-            temp = temp->next;
-        }
-        temp->next = pos->next;
-        delete ;
+    void delete_From_Pos(Node* &head,int pos){
+    Node * temp = head;
+    int cur = 0;
+    while(cur!= pos-1){
+        temp = temp->next;
+        cur++;
     }
+    Node * toDelete = temp->next;
+    temp->next = toDelete->next;
+    delete toDelete;
+
+    }
+
 
     void insert_At_last(Node* &head, int val){
         Node* n = new Node(val);
         Node* temp = head;
-        while(temp->next != NULL){
+        while(temp->next->next != NULL){
             temp = temp->next;
         }
         temp->next = n;
+    }
+
+    void delete_from_last(Node* &head){
+        Node* temp = head;
+        while(temp->next!= NULL){
+            temp = temp->next;
+        }
+        delete temp->next;
+        temp->next = NULL;
     }
 
 int main(){
@@ -83,10 +97,19 @@ int main(){
     insert_At_last(head,9);
     print(head);
 
-    delete_AT_Head(head);
+    // delete_AT_Head(head);
+    // print(head);
+
+    // delete_From_Pos(2,head);
+    // print(head);
+
+    delete_from_last(head);
     print(head);
 
-    delete_From_Pos(2,head);
+    delete_From_Pos(head,2);
+    print(head);
+
+    delete_From_Pos(head,1);
     print(head);
 
 }
