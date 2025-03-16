@@ -11,12 +11,15 @@ class Node{
     }
 };
 
+// insert at head
+
 void insert_At_head(Node* &head, int val){
     Node* n = new Node(val);
     n->next = head;
     head = n;
 }
 
+  // insert at position
 
   void  insert_AT_pos(Node* &head, int val, int pos){
 
@@ -35,6 +38,8 @@ void insert_At_head(Node* &head, int val){
         temp->next = n;
     }
   }
+
+  // print function
     void print(Node* head){
         Node* temp = head;
         while(temp!= NULL){
@@ -44,11 +49,15 @@ void insert_At_head(Node* &head, int val){
         cout<<"NULL"<<endl;
     }
 
+    // delete at head
+
     void delete_AT_Head(Node* &head){
         Node* temp = head;
         head = head->next;
         delete temp;
     }
+
+    // delete from position
 
     void delete_From_Pos(Node* &head,int pos){
     Node * temp = head;
@@ -63,19 +72,22 @@ void insert_At_head(Node* &head, int val){
 
     }
 
-
+   // insert at last
+      
     void insert_At_last(Node* &head, int val){
         Node* n = new Node(val);
         Node* temp = head;
-        while(temp->next->next != NULL){
+        while(temp->next != NULL){
             temp = temp->next;
         }
         temp->next = n;
     }
 
+    // delete from last
+
     void delete_from_last(Node* &head){
         Node* temp = head;
-        while(temp->next!= NULL){
+        while(temp->next->next != NULL){
             temp = temp->next;
         }
         delete temp->next;
