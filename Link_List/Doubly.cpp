@@ -75,7 +75,7 @@ class LinkList{
             temp->next = n;
             n->prev = temp;
             if(n->next!= NULL){
-            temp->next->prev = n;
+                n->next->prev = n;
         }
             return;
         }
@@ -116,6 +116,60 @@ class LinkList{
         }
         return len;
     }
+
+
+      // delete from start
+
+    void delete_from_start(){
+        Node* temp = head;
+        head = head->next;
+        head->prev = NULL;
+        delete temp;
+    }
+
+     // delete from last
+
+    void delete_from_last(){
+        if (tail == NULL)
+        {
+            cout << "list is empty";
+            return;
+        }
+
+        Node *temp = tail;
+
+        if (tail->prev == NULL)
+        {
+            head = tail = NULL;
+        }
+        else
+        {
+            tail = tail->prev;
+            tail->next = NULL;
+        }
+
+        delete temp;
+    }
+
+    // delete from position
+
+    void delete_from_position(int pos){
+      if(pos == 0){
+        delete_from_start();
+        return;
+      }
+
+      Node* temp = head;
+      int curr = 0;
+      while(curr!= pos-1){
+        temp = temp->next;
+        curr++;
+      }
+      Node* to_del = temp->next;
+      temp->next = to_del->next;
+      to_del->prev = temp;
+      delete to_del;
+    }
 };
 
 int main(){
@@ -136,4 +190,13 @@ int main(){
 
     cout<<ll.length()<<endl;
 
+    ll.delete_from_start();
+    ll.display();
+
+    ll.delete_from_last();
+    ll.display();
+
+    ll.delete_from_position(1);
+    ll.display();
+    
 }
